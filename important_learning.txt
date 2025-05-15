@@ -1,0 +1,30 @@
+Java-Based Configuration in Spring (@Configuration + @Bean)
+-----------------------------------------------------------
+
+1. What is Java-Based Configuration?
+   - Java-based configuration is an alternative to XML and component scanning (@Component) for defining Spring beans.
+   - It allows you to define beans explicitly using Java code, using @Configuration and @Bean annotations
+   - Annotations Used :
+
+       -> @Configuration - Marks a class as a source of bean definitions
+       -> @Bean - Declares a method as a bean producer, the return value becomes a Spring-managed bean. Default
+          bean name will be class name in camelCase. (e.g. dieselEngine, petrolEngine)
+       -> @Bean(name = "myBeanName") - to give custom name to bean, access by this custom name
+
+
+2. Advantage
+  - Type safety: Since it's Java code, your IDE can validate and auto-complete.
+  - Fine-grained control: Full control over object instantiation.
+  - Legacy compatibility: Useful when working with third-party or legacy classes that can’t be annotated with @Component
+
+
+3. Bean Declaration and Access
+    - Spring Java-based configuration, beans are defined using methods inside a class annotated with @Configuration,
+      and each method is annotated with @Bean.
+    - @Configuration tells Spring: This class will define and configure beans manually.
+    - In Java-based configuration using @Configuration + @Bean, you generally don't need @Qualifier — because you
+      explicitly control which bean is injected.
+    - Accessing Beans from :
+        - getBean(String name) --> Returns the bean as an Object — requires manual casting
+        - getBean(Class<T> requiredType) --> Returns the bean by type — avoids casting
+        - getBean(String name, Class<T> requiredType) --> Returns the bean by name + type — safe and precise
